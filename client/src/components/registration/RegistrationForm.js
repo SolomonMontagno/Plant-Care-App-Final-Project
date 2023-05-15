@@ -1,22 +1,28 @@
 import React, { useState } from "react";
+import ErrorList from "../layout/ErrorList"
 import FormError from "../layout/FormError";
 import config from "../../config";
+import translateServerErrors from "../../services/translateServerErrors";
 
 const RegistrationForm = () => {
   const [userPayload, setUserPayload] = useState({
     email: "",
     password: "",
     passwordConfirmation: "",
+    firstName: "",
+    lastName: "",
+    username: "",
   });
 
   const [errors, setErrors] = useState({});
+  const [serverErrors, setServerErrors] = useState({});
 
   const [shouldRedirect, setShouldRedirect] = useState(false);
 
   const validateInput = (payload) => {
     setErrors({});
-    const { email, password, passwordConfirmation } = payload;
-    const emailRegexp = config.validation.email.regexp;
+    const { email, password, passwordConfirmation, username, lastName, firstName } = payload;
+    const emailRegexp = config.validation.email.regexp.emailRegex;
     let newErrors = {};
 
     if (!email.match(emailRegexp)) {
@@ -26,6 +32,33 @@ const RegistrationForm = () => {
       };
     }
 
+    if (username.trim() == "") {
+      newErrors = {
+        ...newErrors,
+        username: "is required"
+      }
+    }
+
+    if (username.length < 5) {
+      newErrors = {
+        ...newErrors,
+        username: "must be at least 5 characters long"
+      }
+    }
+    if (lastName.trim() == "") {
+      newErrors = {
+        ...newErrors,
+        password: "is required",
+      };
+    }
+
+    if (firstName.trim() == "") {
+      newErrors = {
+        ...newErrors,
+        password: "is required",
+      };
+    }
+    
     if (password.trim() == "") {
       newErrors = {
         ...newErrors,
@@ -67,6 +100,11 @@ const RegistrationForm = () => {
             }),
           });
           if (!response.ok) {
+            if (response.status === 422) {
+              const errorBody = await response.json()
+              const newServerErrors = translateServerErrors(errorBody.errors)
+              setServerErrors(newServerErrors)
+            }
             const errorMessage = `${response.status} (${response.statusText})`;
             const error = new Error(errorMessage);
             throw error;
@@ -94,7 +132,29 @@ const RegistrationForm = () => {
   return (
     <div className="grid-container">
       <h1>Register</h1>
+      <ErrorList errors={serverErrors} />
       <form onSubmit={onSubmit}>
+      <div>
+          <label>
+            Fist Name
+            <input type="text" name="firstName" value={userPayload.firstName} onChange={onInputChange} />
+            <FormError error={errors.firstName} />
+          </label>
+        </div>
+        <div>
+          <label>
+            Last Name
+            <input type="text" name="lastName" value={userPayload.lastName} onChange={onInputChange} />
+            <FormError error={errors.lastName} />
+          </label>
+        </div>
+        <div>
+          <label>
+            Username
+            <input type="text" name="username" value={userPayload.username} onChange={onInputChange} />
+            <FormError error={errors.username} />
+          </label>
+        </div>
         <div>
           <label>
             Email

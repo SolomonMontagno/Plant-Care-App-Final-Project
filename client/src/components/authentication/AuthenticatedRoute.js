@@ -15,7 +15,7 @@ const AuthenticatedRoute = ({ component, user, ...rest }) => {
 
   return (
     <Route
-     
+
       {...rest}
     >
       <AuthenticationCheck user={user} component={component} />
