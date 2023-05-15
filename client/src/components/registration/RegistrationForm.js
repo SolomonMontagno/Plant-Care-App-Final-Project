@@ -7,6 +7,9 @@ const RegistrationForm = () => {
     email: "",
     password: "",
     passwordConfirmation: "",
+    username: "",
+    firstName: "",
+    lastName: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -15,7 +18,7 @@ const RegistrationForm = () => {
 
   const validateInput = (payload) => {
     setErrors({});
-    const { email, password, passwordConfirmation } = payload;
+    const { email, password, passwordConfirmation, username, firstName, lastName } = payload;
     const emailRegexp = config.validation.email.regexp;
     let newErrors = {};
 
@@ -32,6 +35,29 @@ const RegistrationForm = () => {
         password: "is required",
       };
     }
+
+    if (username.length < 5) {
+      newErrors = {
+        ...newErrors,
+        username: "must be at least 5 characters long"
+      };
+    }
+
+    if (firstName.length < 1) {
+      newErrors = {
+        ...newErrors,
+        firstName: "is required",
+      };
+    }
+
+    if (lastName.length < 1) {
+      newErrors = {
+        ...newErrors,
+
+        lastName: "is required",
+      };
+    }
+
 
     if (passwordConfirmation.trim() === "") {
       newErrors = {
@@ -95,6 +121,27 @@ const RegistrationForm = () => {
     <div className="grid-container">
       <h1>Register</h1>
       <form onSubmit={onSubmit}>
+        <div>
+          <label>
+            First Name
+            <input type="text" name="firstName" value={userPayload.firstName} onChange={onInputChange} />
+            <FormError error={errors.firstName} />
+          </label>
+        </div>
+        <div>
+          <label>
+            Last Name
+            <input type="text" name="lastName" value={userPayload.lastName} onChange={onInputChange} />
+            <FormError error={errors.lastName} />
+          </label>
+        </div>
+        <div>
+          <label>
+            Username
+            <input type="text" name="username" value={userPayload.username} onChange={onInputChange} />
+            <FormError error={errors.username} />
+          </label>
+        </div>
         <div>
           <label>
             Email
