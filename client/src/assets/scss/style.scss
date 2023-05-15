@@ -1,0 +1,34 @@
+$headings: #212a3e;
+
+
+.logo {
+    display: block;
+    margin: auto;
+    width: 600px;
+    height: 700px;
+    border: solid 3px $headings;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 6px 10px rgba(0, 0, 0, 0.1);
+}
+
+.rounded-corner {
+    border-radius: 8px;
+}
+
+.home {
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    font-weight: bolder;
+}
+
+.homeP {
+    text-align: center;
+    padding-top: 30px;
+    font-weight: bolder;
+}
+
+.authors {
+    color: $headings;
+    text-align: center;
+    font-weight: bolder;
+}
