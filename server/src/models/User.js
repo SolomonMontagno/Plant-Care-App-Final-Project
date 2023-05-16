@@ -33,7 +33,8 @@ class User extends uniqueFunc(Model) {
         username: { type: "string", minLength: 5, maxLength: 25 },
         firstName: { type: "string", minLength: 1, maxLength: 30},
         lastName: { type: "string", minLength: 1, maxLength: 40},
-        admin: { type: ["boolean", "string"]}
+        admin: { type: ["boolean", "string"]},
+        imageUrl: { type: "string" }
 
       },
     };

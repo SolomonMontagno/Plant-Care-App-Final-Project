@@ -9,7 +9,7 @@ import SignInForm from "./authentication/SignInForm";
 import TopBar from "./layout/TopBar";
 import AuthenticatedRoute from "./authentication/AuthenticatedRoute";
 import UserProfile from "./UserProfile";
-
+import HomePage from "./layout/HomePage";
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
   const fetchCurrentUser = async () => {
@@ -27,10 +27,9 @@ const App = (props) => {
 
   return (
     <Router>
-      <TopBar user={currentUser} />
+      <TopBar user={currentUser}/>
       <Switch>
-        <Route exact path="/">
-          <h2>Plant Care Guide App</h2>
+        <Route exact path="/" component={HomePage}>
         </Route>
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
