@@ -21,6 +21,7 @@ exports.up = async (knex) => {
       table.string("firstName").notNullable()
       table.string("lastName").notNullable()
       table.boolean("admin").notNullable().defaultTo(false)
+      table.string("imageUrl")
       table.timestamp("createdAt").notNullable().defaultTo(knex.fn.now());
       table.timestamp("updatedAt").notNullable().defaultTo(knex.fn.now());
     });

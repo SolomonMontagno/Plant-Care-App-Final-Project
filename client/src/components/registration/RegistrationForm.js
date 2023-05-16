@@ -157,27 +157,6 @@ const RegistrationForm = () => {
       <h1>Register</h1>
       <ErrorList errors={serverErrors} />
       <form onSubmit={onSubmit}>
-      <div>
-          <label>
-            Fist Name
-            <input type="text" name="firstName" value={userPayload.firstName} onChange={onInputChange} />
-            <FormError error={errors.firstName} />
-          </label>
-        </div>
-        <div>
-          <label>
-            Last Name
-            <input type="text" name="lastName" value={userPayload.lastName} onChange={onInputChange} />
-            <FormError error={errors.lastName} />
-          </label>
-        </div>
-        <div>
-          <label>
-            Username
-            <input type="text" name="username" value={userPayload.username} onChange={onInputChange} />
-            <FormError error={errors.username} />
-          </label>
-        </div>
         <div>
           <label>
             First Name
