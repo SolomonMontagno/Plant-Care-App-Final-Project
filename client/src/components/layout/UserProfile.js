@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Dropzone from "react-dropzone"
-import ProfileImage from "./layout/ProfileImage";
+import ProfileImage from "./ProfileImage";
 const UserProfile = ({ user }) => {
     return (
         <div className="grid-x grid-container">

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Dropzone from "react-dropzone";
-
+import UserProfile from "./UserProfile";
 const ProfileImage = (props) => {
     const [photo, setPhoto] = useState(null);
     const [newPhotoFormData, setNewPhotoFormData] = useState({
@@ -67,7 +67,7 @@ const ProfileImage = (props) => {
                         <section>
                             <div {...getRootProps()}>
                                 <input {...getInputProps()} />
-                                <p>Upload Your Meme - drag 'n' drop or click to upload</p>
+                                <p>Upload your profile - drag 'n' drop or click to upload</p>
                             </div>
                         </section>
                     )}
