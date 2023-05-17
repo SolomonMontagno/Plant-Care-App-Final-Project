@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import SignOutButton from "../authentication/SignOutButton";
 
 const TopBar = ({ user }) => {
-  
+
   let firstName;
-  if(user){
+  if (user) {
     firstName = user.firstName
   } else {
     firstName = "First Name"
@@ -39,7 +39,12 @@ const TopBar = ({ user }) => {
           <li>
             <Link to="/">Home</Link>
           </li>
-          <Link to="/profile">Profile</Link>
+          <li>
+            <Link to="/profile">Profile</Link>
+          </li>
+          <li>
+            <Link to="/plants">Plants</Link>
+          </li>
         </ul>
       </div>
       <div className="top-bar-right">
