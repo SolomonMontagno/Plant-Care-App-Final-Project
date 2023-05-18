@@ -20,6 +20,31 @@ class Plant extends Model {
             }
         }
     }
+    static get relationMappings(){
+        const { Recipe, User } = require("./index.js")
+        return {
+            recipes: {
+                relation: Model.HasManyRelation,
+                modelClass: Recipe,
+                join: {
+                    from: "plants.id",
+                    to: "recipes.plantId"
+                }
+            },
+            users: {
+                relation: Model.HasManyRelation,
+                modelClass: User,
+                join: {
+                    from: "plants.id",
+                    through: {
+                        from: "recipes.plantId",
+                        to: "recipes.userId"
+                    },
+                    to: "users.id"
+                }
+            }
+        }
+    }
 }
 
 module.exports = Plant;
