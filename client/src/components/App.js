@@ -12,6 +12,7 @@ import UserProfile from "./layout/UserProfile";
 import HomePage from "./layout/HomePage";
 import PlantList from "./layout/PlantList";
 import PlantShow from "./layout/PlantShow";
+
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
   const fetchCurrentUser = async () => {
@@ -34,7 +35,9 @@ const App = (props) => {
         <Route exact path="/" component={HomePage}>
         </Route>
         <Route exact path="/plants" component={PlantList} ></Route>
-        <Route exact path="/plants/:id"><PlantShow user={getCurrentUser}/></Route>
+        <Route exact path="/plants/:id">
+          <PlantShow user={getCurrentUser}/>
+        </Route>
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
         <AuthenticatedRoute exact path ="/profile" component={UserProfile} user={currentUser} />
