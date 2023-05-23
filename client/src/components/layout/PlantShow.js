@@ -4,7 +4,7 @@ import RecipeList from "./RecipeList.js";
 import PlantRecipeForm from "./PlantRecipeForm.js";
 
 const PlantShow = (props) => {
-
+    console.log("plantshow", props)
     let visibleRecipeFormComponent
 
     const { id } = useParams();
@@ -20,6 +20,7 @@ const PlantShow = (props) => {
     })
 
     const [recipes, setRecipes] = useState([])
+
     const getPlant = async () => {
         try {
             const response = await fetch(`/api/v1/plants/${id}`);
@@ -35,11 +36,31 @@ const PlantShow = (props) => {
             console.error(`Error in fetch: ${error.message}`)
         }
     }
+
+    const deleteRecipe = async (recipeId) => {
+        try {
+            const response = await fetch(`/api/v1/plants/${props.plantId}/recipes/${recipeId}`,
+                { method: "DELETE" })
+            if (!response.ok) {
+                const errorMessage = `${response.status} (${response.statusText})`
+                const error = new Error(errorMessage)
+                throw error
+            }
+
+            const filteredRecipe = recipes.filter(recipes => {
+                return recipeId !== recipes.id
+            })
+            setRecipes(filteredRecipe)
+        } catch (error) {
+            console.error(`Error in fetch: ${error.message}`)
+        }
+    }
+
     useEffect(() => {
         getPlant()
     }, [])
 
-    
+
     if (props.user) {
         visibleRecipeFormComponent = <PlantRecipeForm
             plant={plant}
@@ -66,7 +87,7 @@ const PlantShow = (props) => {
                         <p>Season typically grown during: {plant.season}</p>
                     </div>
                 </div>
-                <RecipeList plantRecipes={recipes} />
+                <RecipeList deleteRecipe={deleteRecipe} plantRecipes={recipes} user={props.user} />
             </div>
             <div>
                 {visibleRecipeFormComponent}

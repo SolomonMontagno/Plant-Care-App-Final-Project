@@ -22,7 +22,7 @@ plantRecipeRouter.post("/", uploadImage.single("recipeImageUrl"), async (req, re
     
 
         const recipe = await Recipe.query().insertAndFetch(cleanedInput)
-        const serializedRecipe = await RecipeSerializer.showDetails(recipe)
+        const serializedRecipe = await RecipeSerializer.singleShowDetails(recipe)
         res.status(201).json({recipe: serializedRecipe})
     } catch (error) {
         console.log(error)
@@ -34,5 +34,16 @@ plantRecipeRouter.post("/", uploadImage.single("recipeImageUrl"), async (req, re
         }
     }
 })
+
+plantRecipeRouter.delete("/:id", async (req,res) => {
+    const { id } = req.params
+    try{
+        await Recipe.query().deleteById(id)
+        res.status(200).json({message: "Plant Care guide deleted"})
+    } catch (error) {
+        return res.status(500).json({errors: error})
+    }
+})
+
 
 export default plantRecipeRouter
