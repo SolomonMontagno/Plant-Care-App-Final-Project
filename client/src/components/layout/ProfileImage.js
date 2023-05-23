@@ -48,7 +48,6 @@ const ProfileImage = (props) => {
             }
             const body = await response.json();
             setPhoto(body.photo);
-            debugger
         } catch (error) {
             console.error(`Error in photos Fetch: ${error.message}`);
         }
@@ -57,7 +56,7 @@ const ProfileImage = (props) => {
 
     return (
         <div>
-            <div className="callout secondary profile-pic">
+            <div className="callout secondary profile-pic thumbnail">
                 <img src={photo} />
             </div>
 

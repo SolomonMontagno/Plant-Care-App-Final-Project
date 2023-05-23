@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-import PlantList from "./PlantList";
 import { useParams } from "react-router-dom"
-import RecipeList from "./RecipeList";
+import RecipeList from "./RecipeList.js";
+import PlantRecipeForm from "./PlantRecipeForm.js";
 
 const PlantShow = (props) => {
-    // console.log(props)
+    console.log("plantshow", props)
+    let visibleRecipeFormComponent
+
     const { id } = useParams();
 
     const [plant, setPlant] = useState({
@@ -18,6 +20,7 @@ const PlantShow = (props) => {
     })
 
     const [recipes, setRecipes] = useState([])
+
     const getPlant = async () => {
         try {
             const response = await fetch(`/api/v1/plants/${id}`);
@@ -33,18 +36,61 @@ const PlantShow = (props) => {
             console.error(`Error in fetch: ${error.message}`)
         }
     }
+
+    const deleteRecipe = async (recipeId) => {
+        try {
+            const response = await fetch(`/api/v1/plants/${props.plantId}/recipes/${recipeId}`,
+                { method: "DELETE" })
+            if (!response.ok) {
+                const errorMessage = `${response.status} (${response.statusText})`
+                const error = new Error(errorMessage)
+                throw error
+            }
+
+            const filteredRecipe = recipes.filter(recipes => {
+                return recipeId !== recipes.id
+            })
+            setRecipes(filteredRecipe)
+        } catch (error) {
+            console.error(`Error in fetch: ${error.message}`)
+        }
+    }
+
     useEffect(() => {
         getPlant()
     }, [])
+
+
+    if (props.user) {
+        visibleRecipeFormComponent = <PlantRecipeForm
+            plant={plant}
+            plantId={id}
+            recipes={recipes}
+            setRecipes={setRecipes}
+
+        />
+    } else {
+        visibleRecipeFormComponent = null
+    }
+
     return (
         <div>
-            <img src={plant.plantImageUrl} alt="plant-poster"></img>
-            <p>{plant.name}</p>
-            <p>{plant.family}</p>
-            <p>{plant.type}</p>
-            <p>{plant.season}</p>
+            <div className="grid-container grid-x">
+                <div className="column cherokee">
+                    <div className="card-section show-header">
+                        <p>{plant.name}</p>
+                    </div>
+                    <img className="thumbnail" src={plant.plantImageUrl} alt="plant-poster"></img>
+                    <div className="card-section">
+                        <p> Plant Family: {plant.family}</p>
+                        <p>Plant Type: {plant.type}</p>
+                        <p>Season typically grown during: {plant.season}</p>
+                    </div>
+                </div>
+                <RecipeList deleteRecipe={deleteRecipe} plantRecipes={recipes} user={props.user} />
+            </div>
             <div>
-                <RecipeList plantRecipes={recipes}/>
+                {visibleRecipeFormComponent}
             </div>
         </div>
     )

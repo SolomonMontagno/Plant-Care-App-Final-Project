@@ -1,9 +1,23 @@
 $headings: #212a3e;
 
 
+
+body {
+    background-color: #DFD7C8 ;
+    font-family: 'Montserrat', sans-serif !important; 
+    h4{
+      font-family: 'Montserrat', sans-serif; 
+}
+  h1{
+    font-family: 'Montserrat', sans-serif; 
+}
+    }
+
 .logo {
     display: block;
-    margin: auto;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
     width: 600px;
     height: 700px;
     border: solid 3px $headings;
@@ -25,10 +39,131 @@ $headings: #212a3e;
     text-align: center;
     padding-top: 30px;
     font-weight: bolder;
-}
+    font-family: 'Montserrat', sans-serif;}
 
 .authors {
     color: $headings;
     text-align: center;
     font-weight: bolder;
+    font-family: 'Montserrat', sans-serif;}
+
+
+
+.menu-left {
+    width:  200px;
+    
+    
 }
+
+
+.menu-words {
+    margin-left: 120px;
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.nav-bar {
+    background-color:#36461a;
+
+    ul{
+        background-color: #36461a;
+    }
+}
+
+.white {
+    color: white;
+  }
+
+  .bbackground {
+    background-color: #DFD7C8;
+    color: #0F3325;
+  }
+
+  .button-margin {
+    margin-right: 10px; /* Adjust the value to increase or decrease the spacing */
+  }
+
+  .plant-list {
+    font-family: 'Montserrat', sans-serif;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.19);
+    overflow: hidden;
+  }
+
+.plant-photo {
+    margin: auto;
+    height: 275px;
+    width: 275px;
+}
+
+.plant-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  .plant-grid .column {
+    flex-basis: calc(33.33% - 20px); /* Adjust the percentage and margin as needed */
+    margin-bottom: 20px; /* Adjust the margin as needed */
+  }
+  
+  @media (max-width: 768px) {
+    .plant-grid .column {
+      flex-basis: calc(50% - 20px); /* Adjust the margin as needed */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .plant-grid .column {
+      flex-basis: 100%;
+    }
+  }
+
+  .name-text {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+  }
+
+  .centered-image {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 50px;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  .plant-list-image {
+    margin-top: 40px;
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .cherokee {
+    background-color: #36461a;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .cherokee p {
+    text-decoration: center;
+    margin: auto;
+    color: white;
+  }
+
+  .show-header {
+    font-weight: bold;
+  }
