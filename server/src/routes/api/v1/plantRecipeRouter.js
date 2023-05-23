@@ -18,12 +18,14 @@ plantRecipeRouter.post("/", uploadImage.single("recipeImageUrl"), async (req, re
         const userId = req.user.id 
         const { plantId } = req.params 
         cleanedInput.userId = userId
+        cleanedInput.plantId = plantId
     
 
         const recipe = await Recipe.query().insertAndFetch(cleanedInput)
-        const serializedRecipe = await RecipeSerializer.serializedRecipe(recipe)
+        const serializedRecipe = await RecipeSerializer.showDetails(recipe)
         res.status(201).json({recipe: serializedRecipe})
     } catch (error) {
+        console.log(error)
         if (error instanceof ValidationError){
             res.status(422).json({errors: error.data})
         } else {

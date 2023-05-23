@@ -52,12 +52,12 @@ const TopBar = ({ user }) => {
                 </li>
               </div>
             </div>
-            <div class="top-bar-left">
-              <ul class="menu">
-                <li className="search-bar">
+            <div className="top-bar-left">
+              <ul className="menu">
+                <div className="search-bar">
                   <li><input type="search" placeholder="Search" /></li>
-                  <li><button type="button" class="button bbackground">Search</button></li>
-                </li>
+                  <li><button type="button" className="button bbackground">Search</button></li>
+                </div>
               </ul>
             </div>
           </div>

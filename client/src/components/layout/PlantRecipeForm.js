@@ -21,7 +21,7 @@ const PlantRecipeForm = ({ plant, plantId, recipes, setRecipes }) => {
 
     const [errors, setErrors] = useState([])
 
-    const postRecipe = async (newRecipeData, plantId) => {
+    const postRecipe = async (newRecipeData) => {
         const newImageBody = new FormData()
         newImageBody.append("name", newRecipe.name)
         newImageBody.append("pestManagement", newRecipe.pestManagement)
@@ -52,7 +52,7 @@ const PlantRecipeForm = ({ plant, plantId, recipes, setRecipes }) => {
             } else {
                 const responseBody = await response.json()
                 setErrors([])
-                setRecipes([...recipes, responseBody.recipe])
+                setRecipes([...recipes, responseBody.recipe]);
             }
         } catch (error) {
             console.error(`Error in fetch: ${error.message}`)
@@ -67,13 +67,13 @@ const PlantRecipeForm = ({ plant, plantId, recipes, setRecipes }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        postRecipe(newRecipe, plantId)
+        postRecipe(newRecipe, plant.id)
         clearForm()
     }
 
     const clearForm = () => {
         setNewRecipe({
-            recipeImageUrl: "",
+            recipeImageUrl: {},
             name: "",
             pestManagement: "",
             wateringSchedule: "",

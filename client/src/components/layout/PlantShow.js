@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import PlantList from "./PlantList";
 import { useParams } from "react-router-dom"
-import RecipeList from "./RecipeList";
-import PlantRecipeForm from "./PlantRecipeForm";
+import RecipeList from "./RecipeList.js";
+import PlantRecipeForm from "./PlantRecipeForm.js";
 
 const PlantShow = (props) => {
 
@@ -40,7 +39,7 @@ const PlantShow = (props) => {
         getPlant()
     }, [])
 
-
+    
     if (props.user) {
         visibleRecipeFormComponent = <PlantRecipeForm
             plant={plant}
