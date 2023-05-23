@@ -36,7 +36,7 @@ const App = (props) => {
         </Route>
         <Route exact path="/plants" component={PlantList} ></Route>
         <Route exact path="/plants/:id">
-          <PlantShow user={getCurrentUser}/>
+          <PlantShow user={currentUser}/>
         </Route>
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />

@@ -15,18 +15,18 @@ class RecipeSerializer {
         return serializedRecipes
     }
 
-    static async singleShowDetails(recipe) {
-        const allowedAttributes = ["id", "recipeImageUrl", "name", "pestManagement", "wateringSchedule", "wateringAmount", "lightAmount", "harvestNotes", "plantLocation"]
-        const serializedRecipe = {}
-        for (const attribute of allowedAttributes) {
-            serializedRecipe[attribute] = recipe[attribute]
-        }
-        const relatedUser = await recipe.$relatedQuery("user")
-        serializedRecipe.user = relatedUser
+    // static async singleShowDetails(recipe) {
+    //     const allowedAttributes = ["id", "recipeImageUrl", "name", "pestManagement", "wateringSchedule", "wateringAmount", "lightAmount", "harvestNotes", "plantLocation"]
+    //     const serializedRecipe = {}
+    //     for (const attribute of allowedAttributes) {
+    //         serializedRecipe[attribute] = recipe[attribute]
+    //     }
+    //     const relatedUser = await recipe.$relatedQuery("user")
+    //     serializedRecipe.user = relatedUser
 
         
-        return serializedRecipe
-    }
+    //     return serializedRecipe
+    // }
 }
 
 export default RecipeSerializer
