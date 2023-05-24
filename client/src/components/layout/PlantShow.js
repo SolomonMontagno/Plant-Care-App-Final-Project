@@ -4,7 +4,7 @@ import RecipeList from "./RecipeList.js";
 import PlantRecipeForm from "./PlantRecipeForm.js";
 
 const PlantShow = (props) => {
-    console.log("plantshow", props)
+    
     let visibleRecipeFormComponent
 
     const { id } = useParams();

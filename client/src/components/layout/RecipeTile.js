@@ -1,42 +1,34 @@
 import React, { useState } from "react"
 import { Redirect } from "react-router-dom"
-
+import EditRecipeForm from "./EditRecipeForm.js"
 const RecipeTile = props => {
-    console.log("recipetile", props)
-
-    const [showDelete, setShowDelete] = useState(false)
+    
+console.log("looing foir plantId", props)
+    const [editRedirect, setEditRedirect] = useState(false)
 
     let hideDelete
-
+    let hideEdit
     const handleDelete = () => {
         event.preventDefault()
         props.deleteRecipe(props.recipe.id)
     }
-    // old code
-    // const deleteRecipe = async (recipeId) => {
-    //     try {
-    //         const response = await fetch(`/api/v1/plants/${props.plantId}/recipes/${recipeId}`,
-    //             { method: "DELETE" })
-    //         if (!response.ok) {
-    //             const errorMessage = `${response.status} (${response.statusText})`
-    //             const error = new Error(errorMessage)
-    //             throw error
-    //         } 
-    //     } catch (error) {
-    //         console.error(`Error in fetch: ${error.message}`)
-    //     }
-    // }
 
-    if (showDelete) {
-        return <Redirect push to={`/plant/${plantId}`} />
+    const handleEdit = () => {
+        event.preventDefault()
+        setEditRedirect(true)
     }
 
+    if(editRedirect) {
+        return <Redirect push to={`/plants/${props.recipe.plantId}/recipes/${props.recipe.id}/edit`} />
+    }
     if (props.user) {
         if (props.recipe.user.id === props.user.id) {
             hideDelete = <button className="button" onClick={handleDelete}> Delete Care Guide: {props.recipe.name}</button>
+            hideEdit = <button className="button" onClick={handleEdit}>Edit Care Guide: {props.recipe.name}</button>
         } else {
             if (props.recipe.user.id !== props.user.id) {
                 hideDelete = ""
+                hideEdit = ""
             }
         }
     }
@@ -59,6 +51,7 @@ const RecipeTile = props => {
                 </div>
                 <div>
                     {hideDelete}
+                    {hideEdit}
                 </div>
             </div>
         </div>
