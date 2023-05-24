@@ -12,6 +12,7 @@ import UserProfile from "./layout/UserProfile";
 import HomePage from "./layout/HomePage";
 import PlantList from "./layout/PlantList";
 import PlantShow from "./layout/PlantShow";
+import EditRecipeForm from "./layout/EditRecipeForm";
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -38,6 +39,7 @@ const App = (props) => {
         <Route exact path="/plants/:id">
           <PlantShow user={currentUser}/>
         </Route>
+        <Route exact path="/plants/:id/recipes/:recipeId/edit" component={EditRecipeForm}></Route>
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
         <AuthenticatedRoute exact path ="/profile" component={UserProfile} user={currentUser} />
