@@ -8,8 +8,8 @@ class Seeder {
     console.log("seeding plants")
     await PlantSeeder.seed()
     
-    console.log("seeding care guides")
-    await RecipeSeeder.seed()
+    // console.log("seeding care guides")
+    // await RecipeSeeder.seed()
 
     console.log("Done!")
     await connection.destroy()

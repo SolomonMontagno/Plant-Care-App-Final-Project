@@ -2,14 +2,14 @@ import React from "react";
 import PlantList from "./PlantList";
 import { Link } from "react-router-dom";
 const HomePage = (props) => {
-  
     return (
         <div className="grid-container">
             <div>
                 <img
                     className="logo thumbnail"
                     src="https://plant-care-app-final-project.s3.amazonaws.com/Screen+Shot+2023-05-22+at+10.16.45+PM.png"
-                ></img>
+                    ></img>
+                    <p>Welcome to PlantSage, your ultimate plant care companion! Whether you're a seasoned plant enthusiast or just starting your green journey, PlantSage provides expert knowledge and guidance with comprehensive care guides for a wide range of plants. Contribute your own care guides and unlock the full potential of your green space with PlantSage's user-friendly experience.</p>
             </div>
             <div className="featured">
                 <h4>Featured Plants</h4>

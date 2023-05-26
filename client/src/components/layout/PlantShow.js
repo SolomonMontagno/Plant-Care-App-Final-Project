@@ -134,12 +134,12 @@ const PlantShow = (props) => {
                         <p>Season typically grown during: {plant.season}</p>
                     </div>
                 </div>
+                    <div>{props.user && <PlantRecipeForm plant={plant} plantId={id} recipes={recipes} setRecipes={setRecipes} />}</div>
             </div>
             <div className="grid-container">
                 <div className="">
                     <RecipeList deleteRecipe={deleteRecipe} plantRecipes={recipes} user={props.user} />
                 </div>
-                    <div>{props.user && <PlantRecipeForm plant={plant} plantId={id} recipes={recipes} setRecipes={setRecipes} />}</div>
             </div>
         </div>
     );

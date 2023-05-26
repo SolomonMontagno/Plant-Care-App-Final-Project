@@ -40,12 +40,12 @@ const RecipeTile = props => {
                 <img src={props.recipe.recipeImageUrl}></img>
             </div>
             <div className="card-section">
-                <p>Plant Location: {props.recipe.plantLocation}</p>
-                <p>Harvest Notes: {props.recipe.harvestNotes}</p>
-                <p>Total minimum hours of light: {props.recipe.lightAmount}</p>
-                <p>Total Amount of water per watering: {props.recipe.wateringAmount}</p>
-                <p>Watering Frequency: {props.recipe.wateringSchedule}</p>
-                <p>Created by: {props.recipe.user.username}</p>
+                <p><strong>Plant Location:</strong> {props.recipe.plantLocation}</p>
+                <p><strong>Harvest Notes:</strong> {props.recipe.harvestNotes}</p>
+                <p><strong>Total minimum hours of light:</strong> {props.recipe.lightAmount}</p>
+                <p><strong>Total Amount of water per watering:</strong> {props.recipe.wateringAmount}</p>
+                <p><strong>Watering Frequency:</strong> {props.recipe.wateringSchedule}</p>
+                <p><strong>Created by:</strong> {props.recipe.user.username}</p>
             </div>
             {hideDelete}
             {hideEdit}
