@@ -3,6 +3,7 @@ import { Redirect } from "react-router-dom"
 import translateServerErrors from "../../services/translateServerErrors.js"
 import ErrorList from "./ErrorList.js"
 import Dropzone from "react-dropzone"
+import RecipeForm from "./RecipeForm.js"
 
 
 const PlantRecipeForm = ({ plant, plantId, recipes, setRecipes }) => {
@@ -92,45 +93,45 @@ const PlantRecipeForm = ({ plant, plantId, recipes, setRecipes }) => {
     return (
         <div>
             <ErrorList errors={errors} />
-            <div className="grid-container">
-                <div className="grid-x grid-padding-x">
-                    <div className="medium-6 cell">
+            <div className="grid-container ">
+                <div className="grid-x grid-padding-x card-section">
+                    <div className="medium-5 large-5 card cell recipeForm">
                         <h4>Have a different care approach? Add it here.</h4>
                         <form onSubmit={handleSubmit}>
                             <label>
-                                name:
-                                <input type="text" name="name" onChange={handleInputChange} value={newRecipe.name}>
+                                Name
+                                <input type="text" placeholder="Name" name="name" onChange={handleInputChange} value={newRecipe.name}>
                                 </input>
                             </label>
 
                             <label>
-                                Pest Management Tips:
-                                <input type="text" name="pestManagement" onChange={handleInputChange} value={newRecipe.pestManagement} ></input>
+                                Pest Management Tips
+                                <input type="text" placeholder="Pest Management Tips" name="pestManagement" onChange={handleInputChange} value={newRecipe.pestManagement} ></input>
                             </label>
 
                             <label>
                                 Watering Schedule: How often do you water?
-                                <input type="text" name="wateringSchedule" onChange={handleInputChange} value={newRecipe.wateringSchedule}></input>
+                                <input type="text" placeholder="Watering Schedule" name="wateringSchedule" onChange={handleInputChange} value={newRecipe.wateringSchedule}></input>
                             </label>
 
                             <label>
                                 Watering Amount: How much do you water?
-                                <input type="text" name="wateringAmount" onChange={handleInputChange} value={newRecipe.wateringAmount}></input>
+                                <input type="text" placeholder="Watering Amount" name="wateringAmount" onChange={handleInputChange} value={newRecipe.wateringAmount}></input>
                             </label>
 
                             <label>
                                 How many hours of light?
-                                <input type="text" name="lightAmount" onChange={handleInputChange} value={newRecipe.lightAmount}></input>
+                                <input type="text" placeholder="Total hours of sunlight" name="lightAmount" onChange={handleInputChange} value={newRecipe.lightAmount}></input>
                             </label>
 
                             <label>
                                 Please add any helpful harvest tips:
-                                <input type="text" name="harvestNotes" onChange={handleInputChange} value={newRecipe.harvestNotes}></input>
+                                <input type="text" placeholder="Harvest Tips" name="harvestNotes" onChange={handleInputChange} value={newRecipe.harvestNotes}></input>
                             </label>
 
                             <label>
                                 Where is the plant located?
-                                <input type="text" name="plantLocation" onChange={handleInputChange} value={newRecipe.plantLocation}></input>
+                                <input type="text" placeholder="Plant Location" name="plantLocation" onChange={handleInputChange} value={newRecipe.plantLocation}></input>
                             </label>
 
                             <Dropzone onDrop={handleImageUpload} >
@@ -143,7 +144,7 @@ const PlantRecipeForm = ({ plant, plantId, recipes, setRecipes }) => {
                                     </section>
                                 )}
                             </Dropzone>
-                            <input type="submit" value="submit" />
+                            <input type="submit" className="button formButton"value="submit" />
                         </form>
                     </div>
                 </div>

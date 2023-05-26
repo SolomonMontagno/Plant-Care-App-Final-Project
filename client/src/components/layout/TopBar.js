@@ -56,7 +56,7 @@ const TopBar = ({ user }) => {
               <ul className="menu">
                 <div className="search-bar">
                   <li><input type="search" placeholder="Search" /></li>
-                  <li><button type="button" className="button bbackground">Search</button></li>
+                  <li><button type="button" className="button bbackground search-bar-text">Search</button></li>
                 </div>
               </ul>
             </div>
