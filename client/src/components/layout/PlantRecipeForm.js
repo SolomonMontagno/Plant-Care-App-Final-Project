@@ -95,7 +95,7 @@ const PlantRecipeForm = ({ plant, plantId, recipes, setRecipes }) => {
             <ErrorList errors={errors} />
             <div className="grid-container ">
                 <div className="grid-x grid-padding-x card-section">
-                    <div className="medium-5 large-5 card cell recipeForm">
+                    <div className="medium-12 large-12 card cell recipeForm">
                         <h4>Have a different care approach? Add it here.</h4>
                         <form onSubmit={handleSubmit}>
                             <label>
