@@ -4,7 +4,7 @@ import usersRouter from "./api/v1/usersRouter.js";
 import clientRouter from "./clientRouter.js";
 import plantsRouter from "./api/v1/plantRouter.js";
 import weatherRouter from "./api/v1/weatherRouter.js";
-import recipeRouter from "./api/v1/RecipeRouter.js";
+import recipeRouter from "./api/v1/recipesRouter.js";
 const rootRouter = new express.Router();
 
 rootRouter.use("/api/v1/user-sessions", userSessionsRouter);
