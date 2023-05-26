@@ -77,32 +77,37 @@ const SignInForm = () => {
 
   return (
     <div className="grid-container">
-      <h1>Sign In</h1>
       {credentialsErrors ? <p className="callout alert">{credentialsErrors}</p> : null}
+      <div className="grid-x">
+        <div className="medium-6 cell thumbnail login cherokee">
+      <h1 className="">Sign In</h1>
       <form onSubmit={onSubmit}>
         <div>
-          <label>
+          <label className="white">
             Email
-            <input type="text" name="email" value={userPayload.email} onChange={onInputChange} />
+            <input type="text" name="email" placeholder="Email" value={userPayload.email} onChange={onInputChange} />
             <FormError error={errors.email} />
           </label>
         </div>
         <div>
-          <label>
+          <label className="white">
             Password
             <input
               type="password"
               name="password"
+              placeholder="Password"
               value={userPayload.password}
               onChange={onInputChange}
             />
             <FormError error={errors.password} />
           </label>
-        </div>
+          </div>
         <div>
-          <input type="submit" className="button" value="Sign In" />
+          <input type="submit" className="button bbackground" value="Sign In" />
         </div>
       </form>
+        </div>
+      </div>
     </div>
   );
 };

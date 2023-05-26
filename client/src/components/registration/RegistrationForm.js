@@ -58,7 +58,7 @@ const RegistrationForm = () => {
         password: "is required",
       };
     }
-    
+
     if (password.trim() == "") {
       newErrors = {
         ...newErrors,
@@ -154,65 +154,71 @@ const RegistrationForm = () => {
 
   return (
     <div className="grid-container">
-      <h1>Register</h1>
       <ErrorList errors={serverErrors} />
-      <form onSubmit={onSubmit}>
-        <div>
-          <label>
-            First Name
-            <input type="text" name="firstName" value={userPayload.firstName} onChange={onInputChange} />
-            <FormError error={errors.firstName} />
-          </label>
+      <div className="grid-x">
+        <div className="medium-6 cell thumbnail login cherokee ">
+      <h1>Register</h1>
+          <form onSubmit={onSubmit}>
+            <div>
+              <label className="white">
+                First Name
+                <input type="text" name="firstName" placeholder="First Name" value={userPayload.firstName} onChange={onInputChange} />
+                <FormError error={errors.firstName} />
+              </label>
+            </div>
+            <div>
+              <label className="white">
+                Last Name
+                <input type="text" name="lastName" placeholder="Last Name" value={userPayload.lastName} onChange={onInputChange} />
+                <FormError error={errors.lastName} />
+              </label>
+            </div>
+            <div>
+              <label className="white">
+                Username
+                <input type="text" name="username" placeholder="Username" value={userPayload.username} onChange={onInputChange} />
+                <FormError error={errors.username} />
+              </label>
+            </div>
+            <div>
+              <label className="white">
+                Email
+                <input type="text" name="email" placeholder="Email" value={userPayload.email} onChange={onInputChange} />
+                <FormError error={errors.email} />
+              </label>
+            </div>
+            <div>
+              <label className="white">
+                Password
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  value={userPayload.password}
+                  onChange={onInputChange}
+                />
+                <FormError error={errors.password} />
+              </label>
+            </div>
+            <div>
+              <label className="white">
+                Password Confirmation
+                <input
+                  type="password"
+                  name="passwordConfirmation"
+                  placeholder="Password Confirmation"
+                  value={userPayload.passwordConfirmation}
+                  onChange={onInputChange}
+                />
+                <FormError error={errors.passwordConfirmation} />
+              </label>
+            </div>
+            <div>
+              <input type="submit" className="button bbackground" value="Register" />
+            </div>
+          </form>
         </div>
-        <div>
-          <label>
-            Last Name
-            <input type="text" name="lastName" value={userPayload.lastName} onChange={onInputChange} />
-            <FormError error={errors.lastName} />
-          </label>
-        </div>
-        <div>
-          <label>
-            Username
-            <input type="text" name="username" value={userPayload.username} onChange={onInputChange} />
-            <FormError error={errors.username} />
-          </label>
-        </div>
-        <div>
-          <label>
-            Email
-            <input type="text" name="email" value={userPayload.email} onChange={onInputChange} />
-            <FormError error={errors.email} />
-          </label>
-        </div>
-        <div>
-          <label>
-            Password
-            <input
-              type="password"
-              name="password"
-              value={userPayload.password}
-              onChange={onInputChange}
-            />
-            <FormError error={errors.password} />
-          </label>
-        </div>
-        <div>
-          <label>
-            Password Confirmation
-            <input
-              type="password"
-              name="passwordConfirmation"
-              value={userPayload.passwordConfirmation}
-              onChange={onInputChange}
-            />
-            <FormError error={errors.passwordConfirmation} />
-          </label>
-        </div>
-        <div>
-          <input type="submit" className="button" value="Register" />
-        </div>
-      </form>
+      </div>
     </div>
   );
 };

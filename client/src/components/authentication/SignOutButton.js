@@ -31,7 +31,7 @@ const SignOutButton = () => {
   }
 
   return (
-    <button type="button" className="button bbackground" onClick={signOut}>
+    <button type="button" className="button bbackground search-bar-text" onClick={signOut}>
       Sign Out
     </button>
   );

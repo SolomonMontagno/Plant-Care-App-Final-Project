@@ -18,15 +18,13 @@ body {
     margin-top: 100px;
     margin-left: auto;
     margin-right: auto;
-    width: 600px;
-    height: 700px;
-    border: solid 3px $headings;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 6px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
 }
 
-.rounded-corner {
-    border-radius: 8px;
-}
+
 
 .home {
     text-align: center;
@@ -50,7 +48,7 @@ body {
 
 
 .menu-left {
-    width:  200px
+    width:  165px
     
     
 }
@@ -68,6 +66,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    
 }
 .nav-bar {
     background-color:#36461a;
@@ -79,11 +78,16 @@ body {
 
 .white {
     color: white;
+    font-size: 14pt;
+    font-weight: 400;
   }
 
   .bbackground {
     background-color: #DFD7C8;
     color: #0F3325;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.19);
+    
+
   }
 
   .button-margin {
@@ -103,6 +107,8 @@ body {
 }
 
 .plant-grid {
+    margin-left: 32px;
+    margin-right: 32px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -129,8 +135,11 @@ body {
   .name-text {
     text-align: center;
     font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
-  }
+    h4{
+      font-weight: bolder;
+      font-size: 20pt;
+    }
+    }
 
   .centered-image {
     text-align: center;
@@ -149,7 +158,7 @@ body {
   .cherokee {
     background-color: #36461a;
     margin-top: 50px;
-    margin-left: auto;
+    margin-left: 30px;
     margin-right: auto;
     margin-bottom: 50px;
     display: flex;
@@ -165,5 +174,75 @@ body {
   }
 
   .show-header {
-    font-weight: bold;
+    p{
+      font-size: 20pt;
+      font-weight: bold;
+    }
+  }
+
+  .login{
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.19);
+    color: white;
+  }
+
+  .formButton{
+    background-color: #36461a;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.19);
+
+  }
+
+  .recipeButton {
+    background-color:#36461a;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.19);
+    margin-bottom: 15px;
+    p{
+      color: white;
+      font-size: 12pt;
+      font-weight: 500;
+    }
+  }
+  
+  .text{
+    p{
+      font-size: 12pt;
+      font-weight: bold;
+    } 
+  }
+
+  .button.search-bar-text {
+    font-size: 16px;
+    
+  }
+
+  .featured {
+    margin-top: 75px;
+    h4{
+      font-weight: bolder;
+      font-size: 20pt;
+      margin-bottom: 15pt;
+    }
+  }
+
+  .featured-plants {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.19);
+
+  }
+
+  .weather {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: auto;
+  margin-top: auto;
+  margin-left: 100px;
+  margin-right: 100px;
+  }
+
+  .recipeForm{
+    margin-right: auto;
+    margin-left: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.19);
+
   }

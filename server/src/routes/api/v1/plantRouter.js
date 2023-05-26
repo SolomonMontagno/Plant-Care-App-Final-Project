@@ -22,7 +22,6 @@ plantsRouter.get("/:id", async (req, res) => {
     const { id } = req.params
     try {
         const plant = await Plant.query().findById(id)
-        console.log(plant)
         const serializedPlant = await PlantSerializer.getSummary(plant, req.user)
         return res.status(200).json({ plant: serializedPlant })
     } catch (error) {
@@ -30,6 +29,7 @@ plantsRouter.get("/:id", async (req, res) => {
         res.status(500).json({ errors: error })
     }
 })
+
 
 plantsRouter.use("/:plantId/recipes", plantRecipeRouter)
 
