@@ -23,6 +23,7 @@ plantsRouter.get("/:id", async (req, res) => {
     try {
         const plant = await Plant.query().findById(id)
         const serializedPlant = await PlantSerializer.getSummary(plant, req.user)
+        console.log(serializedPlant)
         return res.status(200).json({ plant: serializedPlant })
     } catch (error) {
         console.log(error)

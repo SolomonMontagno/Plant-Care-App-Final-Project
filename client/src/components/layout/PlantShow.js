@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom"
 import RecipeList from "./RecipeList.js";
 import PlantRecipeForm from "./PlantRecipeForm.js";
+import { Link } from "react-router-dom";
+
 
 const PlantShow = (props) => {
-    let visibleRecipeFormComponent
     const { id } = useParams();
-
     const [plant, setPlant] = useState({
         name: "",
         family: "",
@@ -87,17 +87,6 @@ const PlantShow = (props) => {
         getPlant()
     }, [])
 
-    if (props.user) {
-        visibleRecipeFormComponent = <PlantRecipeForm
-            plant={plant}
-            plantId={id}
-            recipes={recipes}
-            setRecipes={setRecipes}
-        />
-    } else {
-        visibleRecipeFormComponent = null
-    }
-    console.log(weather)
 
     const temperatureInFahrenheit =
         weather && weather.main.feels_like ? Math.round(((weather.main.feels_like - 273.15) * 9) / 5 + 32) : ""
@@ -111,8 +100,8 @@ const PlantShow = (props) => {
                 <div className="text-center card weather">
                     <div className="card-section">
                         {weather ? (
-                            <>  
-                            <h3>Today's Weather in {weather.name}</h3>
+                            <>
+                                <h3>Today's Weather in {weather.name}</h3>
                                 <h4>Feels like: {feelsLike}°F</h4>
                                 <img className="thumbnail card" src={`http://openweathermap.org/img/w/${weather.weather[0].icon}.png`} alt="weather icon" />
                                 <h4>Description: {weather.weather[0].description}</h4>
@@ -120,9 +109,10 @@ const PlantShow = (props) => {
                             </>
                         ) : (
                             <p>Loading weather...</p>
-                            )}
+                        )}
                     </div>
                 </div>
+
                 <div className="cherokee">
                     <div className="card-section show-header">
                         <p>{plant.name}</p>
@@ -134,7 +124,13 @@ const PlantShow = (props) => {
                         <p>Season typically grown during: {plant.season}</p>
                     </div>
                 </div>
-                    <div>{props.user && <PlantRecipeForm plant={plant} plantId={id} recipes={recipes} setRecipes={setRecipes} />}</div>
+                <div>
+                    {props.user && (
+                        <Link to={`/plants/${id}/new-recipe`} className="button">
+                            Add New Care Guide
+                        </Link>
+                    )}
+                </div>
             </div>
             <div className="grid-container">
                 <div className="">

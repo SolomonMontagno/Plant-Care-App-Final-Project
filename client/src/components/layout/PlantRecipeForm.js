@@ -1,14 +1,20 @@
 import React, { useState } from "react"
-import { Redirect } from "react-router-dom"
 import translateServerErrors from "../../services/translateServerErrors.js"
 import ErrorList from "./ErrorList.js"
 import Dropzone from "react-dropzone"
-import RecipeForm from "./RecipeForm.js"
+import { useParams } from "react-router-dom"
+import { Redirect } from "react-router-dom"
 
+const PlantRecipeForm = (props) => {
 
-const PlantRecipeForm = ({ plant, plantId, recipes, setRecipes }) => {
-    const defaultImageAddedText = "Add an Image to your care guide - drag 'n' drop or click upload"
-    const [imageAdded, setImageAdded] = useState(defaultImageAddedText)
+    const { id } = useParams()
+    console.log(id)
+
+    const [imagePreview, setImagePreview] = useState({
+        name: "",
+        preview: ""
+    })
+    const [redirect, setRedirect] = useState(false)
     const [newRecipe, setNewRecipe] = useState({
         recipeImageUrl: {},
         name: "",
@@ -22,7 +28,7 @@ const PlantRecipeForm = ({ plant, plantId, recipes, setRecipes }) => {
 
     const [errors, setErrors] = useState([])
 
-    const postRecipe = async (newRecipeData) => {
+    const postRecipe = async () => {
         const newImageBody = new FormData()
         newImageBody.append("name", newRecipe.name)
         newImageBody.append("pestManagement", newRecipe.pestManagement)
@@ -33,7 +39,7 @@ const PlantRecipeForm = ({ plant, plantId, recipes, setRecipes }) => {
         newImageBody.append("plantLocation", newRecipe.plantLocation)
         newImageBody.append("recipeImageUrl", newRecipe.recipeImageUrl)
         try {
-            const response = await fetch(`/api/v1/plants/${plantId}/recipes`, {
+            const response = await fetch(`/api/v1/plants/${id}/recipes`, {
                 method: "POST",
                 headers: new Headers({
                     "Accept": "image/jpeg",
@@ -52,8 +58,7 @@ const PlantRecipeForm = ({ plant, plantId, recipes, setRecipes }) => {
                 }
             } else {
                 const responseBody = await response.json()
-                setErrors([])
-                setRecipes([...recipes, responseBody.recipe]);
+                setRedirect(true)
             }
         } catch (error) {
             console.error(`Error in fetch: ${error.message}`)
@@ -68,28 +73,27 @@ const PlantRecipeForm = ({ plant, plantId, recipes, setRecipes }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        postRecipe(newRecipe, plant.id)
-        clearForm()
+        postRecipe()
     }
 
-    const clearForm = () => {
-        setNewRecipe({
-            recipeImageUrl: {},
-            name: "",
-            pestManagement: "",
-            wateringSchedule: "",
-            wateringAmount: "",
-            lightAmount: "",
-            harvestNotes: "",
-            plantLocation: "",
-        })
+    if (redirect) {
+        return <Redirect to={`/plants/${id}`} />
     }
+
     const handleImageUpload = (acceptedImage) => {
-        setNewRecipe({
-            ...newRecipe, recipeImageUrl: acceptedImage[0]
-        })
-        setImageAdded("Image added")
-    }
+        if (Array.isArray(acceptedImage) && acceptedImage.length > 0) {
+            setNewRecipe({
+                ...newRecipe,
+                recipeImageUrl: acceptedImage[0],
+            });
+            setImagePreview({
+                name: acceptedImage[0].name,
+                preview: URL.createObjectURL(acceptedImage[0])
+            })
+        } else {
+            console.error("Invalid image file")
+        }
+    };
     return (
         <div>
             <ErrorList errors={errors} />
@@ -139,12 +143,14 @@ const PlantRecipeForm = ({ plant, plantId, recipes, setRecipes }) => {
                                     <section>
                                         <div {...getRootProps()} >
                                             <input {...getInputProps()} />
-                                            <p className="image-drop-section callout" >{imageAdded}</p>
+                                            {/* {imagePreview.preview !== "" ? <p className="image-drop-section callout">Add an Image to your care guide - drag 'n' drop or click upload</p> : <img className="image-drop-section callout" src={imagePreview.preview} alt={imagePreview.name} />} */}
+                                            <p className="image-drop-section callout">Add an Image to your care guide - drag 'n' drop or click upload</p>
                                         </div>
                                     </section>
                                 )}
                             </Dropzone>
-                            <input type="submit" className="button formButton"value="submit" />
+                            <img className="recipe-image" src={imagePreview.preview} alt={imagePreview.name} />
+                            <input type="submit" className="button formButton" value="submit" />
                         </form>
                     </div>
                 </div>

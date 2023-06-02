@@ -8,7 +8,7 @@ class PlantSerializer {
         for (const attribute of allowedAttributes) {
             serializedPlant[attribute] = plant[attribute]
         }
-        const recipes = await plant.$relatedQuery("recipes")
+        const recipes = await plant.$relatedQuery("recipes").orderBy("updatedAt", "desc")
         const serializedRecipes = await RecipeSerializer.showDetails(recipes)
 
 

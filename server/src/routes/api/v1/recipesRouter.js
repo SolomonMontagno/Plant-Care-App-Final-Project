@@ -8,7 +8,7 @@ const { ValidationError } = objection
 
 const recipeRouter = new express.Router()
 
-recipeRouter.get("/:id/edit", async (req, res) => {
+recipeRouter.get("/:id", async (req, res) => {
     const { id } = req.params;
     try {
         const recipe = await Recipe.query().findById(id);
@@ -19,11 +19,11 @@ recipeRouter.get("/:id/edit", async (req, res) => {
     }
 });
 
-recipeRouter.patch("/:id/edit", uploadImage.single("recipeImageUrl"), async (req, res) => {
+recipeRouter.patch("/:id", uploadImage.single("recipeImageUrl"), async (req, res) => {
     const { id } = req.params
     try {
         const { body } = req
-        const recipeImageUrl = req.file ? req.file.location : null
+        const recipeImageUrl = req.file ? req.file.location : body.recipeImageUrl
         const bodyWithImageUrl = { ...body, recipeImageUrl: recipeImageUrl }
         const cleanedInput = cleanUserInput(bodyWithImageUrl)
         const userId = req.user.id

@@ -13,7 +13,7 @@ const EditRecipeForm = (props) => {
     const [imageAdded, setImageAdded] = useState(defaultImageAddedText)
 
     const blankRecipe = {
-        recipeImageUrl: {},
+        recipeImageUrl: "",
         name: "",
         pestManagement: "",
         wateringSchedule: "",
@@ -29,7 +29,7 @@ const EditRecipeForm = (props) => {
 
     const getCurrentRecipe = async (recipeId) => {
         try {
-            const response = await fetch(`/api/v1/recipes/${recipeId}/edit`)
+            const response = await fetch(`/api/v1/recipes/${recipeId}`)
             if (!response.ok) {
                 const errorMessage = `${response.status} (${response.statusText})`
                 const error = new Error(errorMessage)
@@ -56,7 +56,7 @@ const EditRecipeForm = (props) => {
         newImageBody.append("plantLocation", editedRecipe.plantLocation)
         newImageBody.append("recipeImageUrl", editedRecipe.recipeImageUrl)
         try {
-            const response = await fetch(`/api/v1/recipes/${recipeId}/edit`, {
+            const response = await fetch(`/api/v1/recipes/${recipeId}`, {
                 method: "PATCH",
                 headers: new Headers({
                     "Accept": "image/jpeg"
@@ -104,7 +104,9 @@ const EditRecipeForm = (props) => {
     }
 
     return (
+
         <div className="grid-container">
+            <ErrorList errors={errors} />
             <div className="grid-x grid-padding-x">
                 <div className="medium-6 cell">
                     <h4>Edit your Care Guide below</h4>
@@ -155,6 +157,9 @@ const EditRecipeForm = (props) => {
                                 </section>
                             )}
                         </Dropzone>
+                        <div className="recipe-picture">
+                        <img src={editedRecipe.recipeImageUrl} alt={editedRecipe.recipeImageUrl} />
+                        </div>
                         <input type="submit" value="submit" />
                     </form>
                 </div>
