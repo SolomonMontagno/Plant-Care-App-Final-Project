@@ -13,7 +13,7 @@ const TopBar = ({ user }) => {
 
   const unauthenticatedListItems = [
     <li className="bbackground" key="sign-in">
-      <Link className="bbackground button-margin" to="/user-sessions/new">Sign In</Link>
+      <Link className="bbackground button white" to="/user-sessions/new">Sign In</Link>
     </li>,
     <li key="sign-up">
       <Link to="/users/new" className="button bbackground white">

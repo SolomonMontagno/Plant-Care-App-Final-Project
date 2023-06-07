@@ -97,7 +97,7 @@ const PlantShow = (props) => {
     return (
         <div>
             <div className="grid-container grid-x">
-                <div className="text-center card weather">
+                <div className="text-center card weather cell medium-8">
                     <div className="card-section">
                         {weather ? (
                             <>
@@ -112,7 +112,6 @@ const PlantShow = (props) => {
                         )}
                     </div>
                 </div>
-
                 <div className="cherokee">
                     <div className="card-section show-header">
                         <p>{plant.name}</p>
@@ -123,13 +122,15 @@ const PlantShow = (props) => {
                         <p>Plant Type: {plant.type}</p>
                         <p>Season typically grown during: {plant.season}</p>
                     </div>
-                </div>
-                <div>
-                    {props.user && (
-                        <Link to={`/plants/${id}/new-recipe`} className="button">
-                            Add New Care Guide
-                        </Link>
-                    )}
+                    <div className="text-center">
+                        <div className="button-container">
+                            {props.user && (
+                                <Link to={`/plants/${id}/new-recipe`} className=" bbackground white button">
+                                    Add New Care Guide
+                                </Link>
+                            )}
+                        </div>
+                    </div>
                 </div>
             </div>
             <div className="grid-container">
