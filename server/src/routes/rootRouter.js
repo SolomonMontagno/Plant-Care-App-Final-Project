@@ -12,6 +12,7 @@ rootRouter.use("/api/v1/users", usersRouter);
 rootRouter.use("/api/v1/plants", plantsRouter)
 rootRouter.use("/api/v1/recipes", recipesRouter)
 rootRouter.use("/api/v1/weather", weatherRouter)
+rootRouter.use("api/v1/votes", votesRouter)
 rootRouter.use("/", clientRouter);
 //place your server-side routes here
 
