@@ -6,7 +6,7 @@ import objection from "objection"
 
 const votesRouter = new express.Router()
 
-votesRouter.post("/", (req, res) => {
+votesRouter.post("/", async (req, res) => {
     const voteValue = req.body.voteValue
     const recipeId = req.body.recipeId
     const userId = req.user.id
@@ -36,3 +36,5 @@ votesRouter.post("/", (req, res) => {
         }
     }
 })
+
+export default votesRouter 
