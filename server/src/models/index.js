@@ -2,4 +2,5 @@
 const User = require("./User.js")
 const Plant = require("./Plant.js")
 const Recipe = require("./Recipe.js")
-module.exports = {User, Plant, Recipe};
+const Vote = require("./Vote.js")
+module.exports = {User, Plant, Recipe, Vote};

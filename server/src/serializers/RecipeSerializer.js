@@ -9,7 +9,12 @@ class RecipeSerializer {
             const relatedUser = await recipe.$relatedQuery("user")
             serializedSingleRecipe.user = relatedUser
 
-            
+            const relatedVotes = await recipe.$relatedQuery("votes")
+            let voteTotal = 0
+            relatedVotes.forEach((vote) =>{
+                voteTotal += vote.voteValue
+            })
+            serializedSingleRecipe.voteValue = voteTotal
             return serializedSingleRecipe
         }))
         return serializedRecipes
@@ -24,7 +29,12 @@ class RecipeSerializer {
         const relatedUser = await recipe.$relatedQuery("user")
         serializedRecipe.user = relatedUser
 
-        
+        const relatedVotes = await recipe.$relatedQuery("votes")
+        let voteTotal = 0
+        relatedVotes.forEach((vote)=> {
+            voteTotal +=vote.voteValue
+        })
+        serializedRecipe.voteValue = voteTotal
         return serializedRecipe
     }
 }
